@@ -1,0 +1,11 @@
+DROP TABLE "ATG_4087_Batch_Ref";
+
+CREATE TABLE "ATG_4087_Batch_Ref"(
+ "BID" IDENTITY,
+ "BatchNo" CHAR(3) CASE ,
+ "GSUser" CHAR(8) CASE ,
+ "Batch_Dt" DATETIME,
+ PRIMARY KEY ("BID")
+);
+
+
