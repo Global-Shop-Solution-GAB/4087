@@ -1,0 +1,583 @@
+Program.Sub.ScreenSU.Start
+gui.F_Batch..create
+gui.F_Batch..caption("WO Batch Create")
+gui.F_Batch..size(10005,6375)
+gui.F_Batch..position(0,0)
+gui.F_Batch..event(unload,Unload)
+gui.F_Batch..alwaysontop(False)
+gui.F_Batch..fontname("Arial")
+gui.F_Batch..fontsize(8)
+gui.F_Batch..forecolor(0)
+gui.F_Batch..fontstyle(,,,,)
+gui.F_Batch..BackColor(-2147483633)
+gui.F_Batch..controlbox(True)
+gui.F_Batch..maxbutton(True)
+gui.F_Batch..minbutton(True)
+gui.F_Batch..mousepointer(0)
+gui.F_Batch..moveable(True)
+gui.F_Batch..sizeable(True)
+gui.F_Batch..ShowInTaskBar(True)
+gui.F_Batch..titlebar(True)
+gui.F_Batch.lblWO.create(label,"Work Order",True,870,255,1,2800,200,True,0,Arial,8,-2147483633,0)
+gui.F_Batch.lblSuf.create(label,"Suffix",True,495,255,1,3800,200,True,0,Arial,8,-2147483633,0)
+gui.F_Batch.txtWO.create(textbox,"",True,945,345,0,2800,400,True,0,Arial,8,-2147483643,1)
+gui.F_Batch.lvwWOBatch.create(listview)
+gui.F_Batch.lvwWOBatch.view(3)
+gui.F_Batch.lvwWOBatch.addlistviewcolumn("WO",1300,0)
+gui.F_Batch.lvwWOBatch.addlistviewcolumn("Suffix",1000,0)
+gui.F_Batch.lvwWOBatch.addlistviewcolumn("Part",2300,0)
+gui.F_Batch.lvwWOBatch.addlistviewcolumn("Qty",1000,0)
+gui.F_Batch.lvwWOBatch.addlistviewcolumn("Model ID",1000,0)
+gui.F_Batch.lvwWOBatch.addlistviewcolumn("Matl Type",1000,0)
+gui.F_Batch.lvwWOBatch.addlistviewcolumn("Model Count",1250,0)
+gui.F_Batch.lvwWOBatch.visible(True)
+gui.F_Batch.lvwWOBatch.size(9585,4305)
+gui.F_Batch.lvwWOBatch.zorder(0)
+gui.F_Batch.lvwWOBatch.position(100,1455)
+gui.F_Batch.lvwWOBatch.enabled(True)
+gui.F_Batch.lvwWOBatch.fontname("Arial")
+gui.F_Batch.lvwWOBatch.fontsize(8)
+gui.F_Batch.lvwWOBatch.event(itemclick,lvwwobatch_click)
+gui.F_Batch.cmdAdd.create(button)
+gui.F_Batch.cmdAdd.caption("Add 2 Batch")
+gui.F_Batch.cmdAdd.visible(True)
+gui.F_Batch.cmdAdd.size(1095,375)
+gui.F_Batch.cmdAdd.zorder(0)
+gui.F_Batch.cmdAdd.position(170,910)
+gui.F_Batch.cmdAdd.enabled(True)
+gui.F_Batch.cmdAdd.fontname("Arial")
+gui.F_Batch.cmdAdd.fontsize(8)
+gui.F_Batch.cmdAdd.event(click,AddToList)
+gui.F_Batch.txtSuf.create(textbox,"",True,690,345,0,3800,400,True,0,Arial,8,-2147483643,1)
+gui.F_Batch.txtSuf.event(keypressenter,AddToList)
+gui.F_Batch.txtPart.create(textbox,"",False,2595,345,0,5650,550,True,0,Arial,8,-2147483643,1)
+gui.F_Batch.txtMod.create(textbox,"",False,1215,345,0,6200,200,True,0,Arial,8,-2147483643,1)
+gui.F_Batch.txtMtl.create(textbox,"",False,1215,345,0,6115,940,True,0,Arial,8,-2147483643,1)
+gui.F_Batch.txtBNo.create(textbox,"",True,765,345,0,4600,400,False,0,Arial,8,-2147483643,1)
+gui.F_Batch.cmdClear.create(button)
+gui.F_Batch.cmdClear.caption("Clear")
+gui.F_Batch.cmdClear.visible(True)
+gui.F_Batch.cmdClear.size(1095,375)
+gui.F_Batch.cmdClear.zorder(0)
+gui.F_Batch.cmdClear.position(3775,910)
+gui.F_Batch.cmdClear.enabled(True)
+gui.F_Batch.cmdClear.fontname("Arial")
+gui.F_Batch.cmdClear.fontsize(8)
+gui.F_Batch.cmdClear.event(click,Clear)
+gui.F_Batch.cmdDel.create(button)
+gui.F_Batch.cmdDel.caption("Remove WO")
+gui.F_Batch.cmdDel.visible(True)
+gui.F_Batch.cmdDel.size(1095,375)
+gui.F_Batch.cmdDel.zorder(0)
+gui.F_Batch.cmdDel.position(2590,910)
+gui.F_Batch.cmdDel.enabled(True)
+gui.F_Batch.cmdDel.fontname("Arial")
+gui.F_Batch.cmdDel.fontsize(8)
+gui.F_Batch.cmdDel.event(click,cmddel_click)
+gui.F_Batch.txtScan.create(textbox,"",True,2520,345,0,180,425,True,0,Arial,8,-2147483643,1)
+gui.F_Batch.txtScan.event(keypressenter,Scan)
+gui.F_Batch.cmdExport.create(button)
+gui.F_Batch.cmdExport.caption("Export Batch")
+gui.F_Batch.cmdExport.visible(True)
+gui.F_Batch.cmdExport.size(1095,375)
+gui.F_Batch.cmdExport.zorder(0)
+gui.F_Batch.cmdExport.position(1385,910)
+gui.F_Batch.cmdExport.enabled(True)
+gui.F_Batch.cmdExport.fontname("Arial")
+gui.F_Batch.cmdExport.fontsize(8)
+gui.F_Batch.cmdExport.event(click,CreateBatch)
+gui.F_Batch.lblScan.create(label,"Scanned Data",True,1935,255,1,195,215,True,0,Arial,8,-2147483633,0)
+gui.F_Batch.lbl4.create(label,"Batch No",True,750,255,1,4600,200,True,0,Arial,8,-2147483633,0)
+gui.F_Batch.cmdClearWOs.create(button)
+gui.F_Batch.cmdClearWOs.caption("Clear List")
+gui.F_Batch.cmdClearWOs.visible(True)
+gui.F_Batch.cmdClearWOs.size(1095,375)
+gui.F_Batch.cmdClearWOs.zorder(0)
+gui.F_Batch.cmdClearWOs.position(5000,900)
+gui.F_Batch.cmdClearWOs.enabled(True)
+gui.F_Batch.cmdClearWOs.fontname("Arial")
+gui.F_Batch.cmdClearWOs.fontsize(8)
+gui.F_Batch.cmdClearWOs.event(click,cmdclearwos_click)
+gui.F_Batch.txtModQty.create(textbox,"",False,1215,300,0,7700,200,True,0,Arial,8,-2147483643,1)
+gui.F_Batch.txtScan.tabstop(True)
+gui.F_Batch.txtScan.tabindex(1)
+gui.F_Batch.txtWO.tabstop(True)
+gui.F_Batch.txtWO.tabindex(2)
+gui.F_Batch.txtSuf.tabstop(True)
+gui.F_Batch.txtSuf.tabindex(3)
+gui.F_Batch.cmdAdd.tabstop(True)
+gui.F_Batch.cmdAdd.tabindex(4)
+gui.F_Batch.cmdExport.tabstop(True)
+gui.F_Batch.cmdExport.tabindex(5)
+gui.F_Batch.cmdDel.tabstop(True)
+gui.F_Batch.cmdDel.tabindex(6)
+gui.F_Batch.cmdClear.tabstop(True)
+gui.F_Batch.cmdClear.tabindex(7)
+
+
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+
+Variable.Global.iCt.Declare(Long,0)
+Variable.Global.sJob.Declare(String)
+Variable.Global.sSuffix.Declare(String)
+Variable.Global.sScan.Declare(String)
+Variable.Global.bNewline.Declare(Boolean,False)
+Variable.Global.sLastScan.Declare(String)
+Variable.Global.iKey.Declare(Long,0)
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+'Coded by ENM
+'Started 8/18/2010
+'Circle Y
+'Delivered
+'Added the following tables ATG_4087_Mod_XRef, ATG_4087_Batch_Ref, and ATG_4087_Batch_WORef
+'Hook User-Defined
+
+
+F.ODBC.Connection!con.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+F.Intrinsic.Control.CallSub(Getbatchno)
+Gui.F_Batch..Show
+Gui.F_Batch.txtScan.SetFocus
+'TODO: Table Exists ATG_4087_Mod_XRef, ATG_4087_Batch_Ref, and ATG_4087_Batch_WORef
+
+Program.Sub.Main.End
+
+Program.Sub.AddWO2Batch.Start
+'Not currently in use
+V.Local.sSQL.Declare(String)
+V.Local.sBatch.Declare(String)
+V.Local.sNo.Declare(String)
+V.Local.fQty.Declare(Float)
+V.Local.fMCt.Declare(Float)
+
+'TODO:Verify that there is a Model_ID for the Part
+F.Intrinsic.Control.CallSub(Txtwo_change)
+V.Local.sBatch.Set(V.Screen.F_Batch!txtBNo.Text)
+
+'TODO: Add to Listview
+'TODO: get qty
+F.Intrinsic.Control.If(V.Screen.F_Batch!txtModQty.Text,>,0)
+	F.Intrinsic.Math.Div(V.Local.fQty,V.Screen.F_Batch!txtModQty.Text,V.Local.fMCt)
+F.Intrinsic.Control.Else
+	V.Local.fMCt.Set(0)
+F.Intrinsic.Control.Endif
+Gui.F_Batch.txtModQty.Text(V.Local.fMCt)
+
+Gui.F_Batch.lvwWOBatch.AddListItem(V.Local.sBatch.String,V.Screen.F_Batch!txtWO.Text)
+Gui.F_Batch.lvwWOBatch.SetListItemSubItemText(V.Local.sBatch.String,1,V.Screen.F_Batch!txtSuf.Text)
+Gui.F_Batch.lvwWOBatch.SetListItemSubItemText(V.Local.sBatch.String,2,V.Screen.F_Batch!txtPart.Text)
+Gui.F_Batch.lvwWOBatch.SetListItemSubItemText(V.Local.sBatch.String,3,V.Local.fQty)
+Gui.F_Batch.lvwWOBatch.SetListItemSubItemText(V.Local.sBatch.String,4,V.Screen.F_Batch!txtMod.Text)
+Gui.F_Batch.lvwWOBatch.SetListItemSubItemText(V.Local.sBatch.String,5,V.Screen.F_Batch!txtMtl.Text)
+Gui.F_Batch.lvwWOBatch.SetListItemSubItemText(V.Local.sBatch.String,6,V.Local.fMCt)
+
+Program.Sub.AddWO2Batch.End
+
+Program.Sub.CreateBatch.Start
+V.Local.sSQL.Declare(String)
+V.Local.iItemX.Declare(Long)
+V.Local.iB.Declare(Long)
+V.Local.iBCt.Declare(Long)
+V.Local.sBatch.Declare(String)
+V.Local.sLines.Declare(String)
+V.Local.iL.Declare(Long)
+V.Local.sFile.Declare(String)
+V.Local.sFields.Declare(String)
+V.Local.sFileName.Declare(String)
+V.Local.dateBDate.Declare(Date)
+V.Local.iOrd.Declare(Long)
+V.Local.sText.Declare(String)
+'F.Intrinsic.Debug.InvokeDebugger
+'
+V.Local.sBatch.Set(V.Screen.F_Batch!txtBNo.Text)
+F.Intrinsic.String.Concat(V.Caller.FilesDir,"\Humantec\Batch",V.Local.sBatch,".txt",V.Local.sFileName)
+'TODO: read listview
+'V.Local.iB.Set(V.Screen.F_Batch!lvwWOBatch.ListCount)
+'F.Intrinsic.Control.For(V.Local.iBct,0,V.Local.iB,1)
+	V.Local.dateBDate.Set(V.Ambient.Date)
+	'F.Intrinsic.String.Concat("Select * ATG_4087_Batch_Ref ,"'",V.Local.sSQL)
+	F.ODBC.Connection!con.OpenLocalRecordsetRW("rstBUp","Select * from ATG_4087_Batch_Ref")
+	F.ODBC.con!rstBUp.AddNew
+	F.ODBC.con!rstBUp.Set!BatchNo(V.Local.sBatch)
+	F.ODBC.con!rstBUp.Set!GSUser(V.Caller.User)
+	f.ODBC.con!rstBUp.Set!Batch_Dt(V.Ambient.Now.PervasiveDate)
+	F.ODBC.con!rstBUp.Update
+	F.ODBC.Con!rstBUp.Close
+	Gui.F_Batch.lvwWOBatch.RetrieveAllListItems(V.Local.sLines)
+	F.Intrinsic.Control.If(V.Local.sLines.Trim,=,"***NORETURN***")
+		F.Intrinsic.UI.Msgbox("No Work Orders in batch")
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+	F.Intrinsic.String.Split(V.Local.sLines(v.Local.iL),"*!*",V.Local.sLines)
+	F.ODBC.Connection!con.OpenLocalRecordsetRO("rstLU","Select top 1 BID from ATG_4087_Batch_Ref order by BID desc")
+	F.Intrinsic.Control.If(V.ODBC.con!rstLU.EOF,=,False)
+		F.Intrinsic.Debug.SetLA("BID=",V.ODBC.con!rstLU.FieldVal!BID)
+		F.Intrinsic.Control.CallSub(Log,"sText",V.Ambient.LastAction,"bFirst",False)
+		F.Intrinsic.Control.For(V.Local.iL,0,V.Local.sLines.UBound,1)
+			F.Intrinsic.Debug.SetLA("Adding record to ATG_4087_BATCH_WORef and Line for Batch File for line:",V.Local.sLines(v.Local.iL))
+			F.Intrinsic.Control.CallSub(Log,"sText",V.Ambient.LastAction,"bFirst",False)
+			F.ODBC.Connection!con.OpenLocalRecordsetRW("rstWO","ATG_4087_BATCH_WORef")
+			F.ODBC.con!rstWO.AddNew
+			F.ODBC.con!rstWO.Set!BID(V.ODBC.con!rstLU.FieldVal!BID)
+			F.ODBC.con!rstWO.Set!BatchNo(V.Local.sBatch)
+			'Commented out following section and added section below to fix lvw errors
+'			Gui.F_Batch.lvwWOBatch.ListItemKeyToOrdinal(V.Screen.F_Batch!lvwWOBatch.SelectedItemKey,V.Local.iOrd)
+			'
+			Gui.F_Batch.lvwWOBatch.ListItemKeyToOrdinal(V.Local.sLines(v.Local.iL),V.Local.iOrd)
+			'
+			'added and subtracted dashes based on quote 3111 on 11/23/11 ENM
+			'moved the Model Count to 3rd position in batch file Quote 3791 on 2/10/2013 by ENM
+			F.Intrinsic.String.Split(V.Screen.F_Batch!lvwWOBatch.ListItemTextExtended(v.Local.iOrd),"*!*",V.Local.sText)
+			F.ODBC.con!rstWO.Set!WO(V.Local.sText(0))
+			F.Intrinsic.String.Concat(V.Local.sFile,V.Local.sBatch,",-",V.Local.sText(0),V.Local.sText(1),",",V.Local.sText(6),",",V.Local.sFile)
+			F.ODBC.con!rstWO.Set!Suffix(V.Local.sText(1))
+			F.ODBC.con!rstWO.Set!PartNo(V.Local.sText(2))
+			'removed Model Count from last position Quote 3791 on 2/10/2013 by ENM
+			F.Intrinsic.String.Concat(V.Local.sFile,V.Local.sText(3),",",V.Local.sText(2),",",V.Local.sText(4),",-",V.Local.sFile)
+			'added v.local.stext(6) to the batch on 3/21/12 by ENM
+			F.Intrinsic.String.Concat(V.Local.sFile,V.Local.sText(5),V.Ambient.NewLine,V.Local.sFile)
+'			F.Intrinsic.String.Concat(V.Local.sFile,V.Local.sFields(4),",",V.Local.sFields(3),",",V.Local.sFields(5),V.Ambient.NewLine,V.Local.sFile)
+'			F.ODBC.con!rstWO.Set!WO(V.Screen.F_Batch!lvwWOBatch.SelectedItemText(v.Local.iL))
+'			'F.Intrinsic.String.Concat(V.Local.sFile,V.Local.sBatch,",",V.Local.sFields(0),"-",V.Local.sFields(1),",",V.Local.sFile)
+'			F.Intrinsic.String.Concat(V.Local.sFile,V.Local.sBatch,",",V.Screen.F_Batch!lvwWOBatch.SelectedItemText(v.Local.iL),"-",V.Screen.F_Batch!lvwWOBatch.SelectedItemSubItem(0),",",V.Local.sFile)
+'			'F.ODBC.con!rstWO.Set!Suffix(V.Local.sFields(1))
+'			F.ODBC.con!rstWO.Set!Suffix(V.Screen.F_Batch!lvwWOBatch.SelectedItemSubItem(0))
+'			F.ODBC.con!rstWO.Set!PartNo(V.Screen.F_Batch!lvwWOBatch.SelectedItemSubItem(1))
+'			'F.ODBC.con!rstWO.Set!PartNo(V.Local.sFields(2))
+'			F.Intrinsic.String.Concat(V.Local.sFile,V.Screen.F_Batch!lvwWOBatch.SelectedItemSubitem(1),",",V.Screen.F_Batch!lvwWOBatch.SelectedItemSubItem(3),",",V.Local.sFile)
+'			F.Intrinsic.String.Concat(V.Local.sFile,V.Screen.F_Batch!lvwWOBatch.SelectedItemSubitem(2),",",V.Screen.F_Batch!lvwWOBatch.SelectedItemSubItem(4),V.Ambient.NewLine,V.Local.sFile)
+''			F.Intrinsic.String.Concat(V.Local.sFile,V.Local.sFields(4),",",V.Local.sFields(3),",",V.Local.sFields(5),V.Ambient.NewLine,V.Local.sFile)
+			F.ODBC.con!rstWO.Update
+			F.ODBC.con!rstWO.Close
+		F.Intrinsic.Control.Next(V.Local.iL)
+	F.Intrinsic.Control.EndIf
+'F.Intrinsic.Control.Next(V.Local.iB)
+F.Intrinsic.File.String2File(V.Local.sFileName,V.Local.sFile)
+F.ODBC.con!rstLU.Close
+F.Intrinsic.Control.CallSub(Getbatchno)
+F.Intrinsic.Control.CallSub(Cmdclearwos_click)
+'TODO: save to ATG_Batch_WO_Ref
+
+
+Program.Sub.CreateBatch.End
+
+Program.Sub.RemoveWO.Start
+V.Local.iOrd.Declare(Long)
+
+'F.Intrinsic.Debug.InvokeDebugger
+
+Gui.F_Batch.lvwWOBatch.ListItemKeyToOrdinal(V.Screen.F_Batch!lvwWOBatch.SelectedItemKey,V.Local.iOrd)
+F.Intrinsic.Control.If(V.Local.iOrd,>,0)
+	Gui.F_Batch.lvwWOBatch.RemoveItem(V.Local.iOrd)
+F.Intrinsic.Control.EndIf
+
+Program.Sub.RemoveWO.End
+
+Program.Sub.Unload.Start
+F.ODBC.Connection!con.Close
+F.Intrinsic.Control.End
+
+Program.Sub.Unload.End
+
+program.sub.txtwo_change.start
+V.Local.sSQL.Declare(String)
+V.Local.sPart.Declare(String)
+
+'get part no from Job_HEADER
+F.Intrinsic.String.Concat("Select  * from V_JOB_HEADER where Job='",V.Screen.F_Batch!txtWO.Text,"' and Suffix='",V.Screen.F_Batch!txtSuf.Text,"'",V.Local.sSQL)
+F.ODBC.Connection!con.OpenLocalRecordsetRO("rstJob",V.Local.sSQL)
+F.Intrinsic.Control.If(V.ODBC.con!rstJob.EOF,=,False)
+	'get part
+	V.Local.sPart.Set(V.ODBC.con!rstJob.FieldVal!Part)
+	Gui.F_Batch.txtPart.Text(V.Local.sPart)
+	'verify Model in XRef table
+	F.Intrinsic.String.Concat("Select * from ATG_4087_Mod_XRef where PartNo='",V.Local.spart,"'",V.Local.sSQL)
+	F.ODBC.Connection!con.OpenLocalRecordsetRO("rstXRef",V.Local.sSQL)
+	F.Intrinsic.Control.If(V.ODBC.con!rstXRef.EOF,=,False)
+		'write the XRef stuff to screen
+		Gui.F_Batch.txtMod.Text(V.ODBC.con!rstXRef.FieldVal!Model_ID)
+		Gui.F_Batch.txtMtl.Text(V.ODBC.con!rstXRef.FieldVal!Material)
+		Gui.F_Batch.txtMtl.Text(V.ODBC.con!rstXRef.FieldVal!Model_Quantity)
+	F.Intrinsic.Control.Else
+		F.Intrinsic.Debug.SetLA("No Model Cross Reference was found for part '",V.Local.sPart,)
+		F.Intrinsic.UI.Msgbox(V.Ambient.LastAction,"")
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+F.ODBC.con!rstJob.Close
+F.ODBC.con!rstXRef.Close
+
+
+program.sub.txtwo_change.end
+
+Program.Sub.GetBatchNo.Start
+V.Local.sSQL.Declare(String)
+V.Local.sBatch.Declare(String)
+V.Local.sNo.Declare(String)
+
+'changing the H to B on 11/23/2011 per quote 3111
+'TOOD:Get BatchNo Select Top 1 BatchNo from ATG_4087_Batch_Ref order by Batch_Dt desc"
+F.ODBC.Connection!con.OpenLocalRecordsetRO("rstBatch","Select Top 1 BatchNo from ATG_4087_Batch_Ref order by Batch_Dt desc")
+F.Intrinsic.Control.If(V.ODBC.con!rstBatch.EOF,=,True)
+'	V.Local.sBatch.Set("H01")
+	V.Local.sBatch.Set("B01")
+F.Intrinsic.Control.Else
+	F.Intrinsic.String.Mid(V.ODBC.con!rstBatch.FieldVal!BatchNo,2,V.Local.sNo)
+	F.Intrinsic.Control.If(V.Local.sNo,=,"99")
+'		V.Local.sBatch.Set("H01")
+		V.Local.sBatch.Set("B01")
+	F.Intrinsic.Control.Else
+		F.Intrinsic.Math.Add(V.Local.sNo,1,V.Local.sNo)
+		'5/31/11 - SMC:  This line did not seem to format correctly.  Commenting out and rewriting
+'		F.Intrinsic.String.Format(V.Local.sNo,"H00",V.Local.sBatch)
+		F.Intrinsic.String.LPad(V.Local.sNo,"0",2,V.Local.sNo)
+'		F.Intrinsic.String.Concat("H",V.Local.sNo,V.Local.sBatch)
+		F.Intrinsic.String.Concat("B",V.Local.sNo,V.Local.sBatch)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+Gui.F_Batch.txtBNo.Text(V.Local.sBatch)
+F.ODBC.con!rstBatch.Close
+
+
+
+
+Program.Sub.GetBatchNo.End
+
+Program.Sub.Log.Start
+V.Local.iHdl.Declare(Long)
+V.Local.sFile.Declare(String)
+V.Local.sLine.Declare(String)
+
+
+F.Intrinsic.File.GetHandle(V.Local.iHdl)
+F.Intrinsic.String.Concat(V.Caller.FilesDir,"\ATG_WO_Batch.log",V.Local.sFile)
+'F.Intrinsic.UI.Msgbox(V.Local.sFile)
+F.Intrinsic.Control.If(V.Args.bFirst,=,"True")
+	F.Intrinsic.File.OpenForWrite(V.Local.sFile,V.Local.iHdl)
+F.Intrinsic.Control.Else
+	F.Intrinsic.File.OpenForAppend(V.Local.sFile,V.Local.iHdl)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.String.Concat(V.Ambient.NewLine,V.Ambient.Now,V.Ambient.Tab,V.Args.sText,V.local.sLine)
+
+F.Intrinsic.File.WriteLine(V.Local.iHdl,V.local.sLine)
+
+F.Intrinsic.File.CloseFile(V.Local.iHdl)
+
+Program.Sub.Log.End
+
+Program.Sub.AddToList.Start
+V.Local.sSQL.Declare(String)
+V.Local.sPart.Declare(String)
+V.Local.sBatch.Declare(String)
+V.Local.fQty.Declare(Float)
+V.Local.sRec.Declare(String)
+V.Local.sWO.Declare(String)
+V.Local.sWOS.Declare(String)
+V.Local.sKey.Declare(String)
+V.Local.sTemp.Declare(String)
+V.Local.bAdd.Declare(Boolean)
+V.Local.fMCt.Declare(Float)
+'F.Intrinsic.Debug.InvokeDebugger
+'3/21/2012 added Model_Qty to the screen and to the Flexgrid,and ATG_Mod_XRef table
+'
+F.Intrinsic.Control.SetErrorHandler("Add2ListError")
+F.Intrinsic.Control.ClearErrors
+Gui.F_Batch..Enabled(false)
+F.Intrinsic.Control.If(V.Screen.F_Batch!txtScan.Text,=,"")
+	V.Global.sJob.Set(V.Screen.F_Batch!txtWO.Text)
+	V.Global.sSuffix.set(V.Screen.F_Batch!txtSuf.Text)
+	F.Intrinsic.Debug.SetLA("Entered WO ",V.Global.sJob,"-",V.Global.sSuffix)
+F.Intrinsic.Control.Else
+	'5/27/11 - SMC:  Apparently the Job should be the first 6 characters, so replacing this section
+'	F.Intrinsic.String.Mid(V.Global.sScan,3,6,V.Global.sJob)
+'	Gui.F_Batch.txtWO.Text(V.Global.sJob)
+'	F.Intrinsic.String.Mid(V.Global.sScan,9,3,V.Global.sSuffix)
+'	Gui.F_Batch.txtSuf.Text(V.Global.sSuffix)
+	F.Intrinsic.String.RPad(V.Global.sScan," ",9,V.Local.sTemp)
+	F.Intrinsic.String.Left(V.Local.sTemp,6,V.Global.sJob)
+	F.Intrinsic.String.Trim(V.Global.sJob,V.Global.sJob)
+	Gui.F_Batch.txtWO.Text(V.Global.sJob)
+	F.Intrinsic.String.Right(V.Local.sTemp,3,V.Global.sSuffix)
+	F.Intrinsic.String.Trim(V.Global.sSuffix,V.Global.sSuffix)
+	Gui.F_Batch.txtSuf.Text(V.Global.sSuffix)
+	F.Intrinsic.Debug.SetLA("Scanned ",V.Global.sScan)
+F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.CallSub(Log,"sText",V.Ambient.LastAction,"bFirst",False)
+V.Local.sBatch.Set(V.Screen.F_Batch!txtBNo.Text)
+	'get part no from Job_HEADER
+	F.Intrinsic.String.Concat("Select  * from V_JOB_HEADER where Job='",V.Global.sJob,"' and Suffix='",V.Global.sSuffix,"'",V.Local.sSQL)
+	F.Intrinsic.Debug.SetLA("Opening: ",V.Local.sSQL)
+	F.ODBC.Connection!con.OpenLocalRecordsetRO("rstJob",V.Local.sSQL)
+	F.Intrinsic.Control.If(V.ODBC.con!rstJob.EOF,=,False)
+		'get part
+		V.Local.sPart.Set(V.ODBC.con!rstJob.FieldVal!Part)
+		Gui.F_Batch.txtPart.Text(V.Local.sPart)
+		'verify Model in XRef table
+		V.Local.bAdd.Set(False)
+		F.Intrinsic.String.Concat("Select * from ATG_4087_Mod_XRef where PartNo='",V.Local.spart,"'",V.Local.sSQL)
+		F.ODBC.Connection!con.OpenLocalRecordsetRO("rstXRef",V.Local.sSQL)
+		F.Intrinsic.Control.If(V.ODBC.con!rstXRef.EOF,=,True)
+			F.Intrinsic.Debug.SetLA("No Model Cross Reference was found for part '",V.Local.sPart)
+			F.Intrinsic.UI.Msgbox(V.Ambient.LastAction,"")
+		F.Intrinsic.Control.Else
+	'		F.Intrinsic.Control.If(V.ODBC.con!rstXRef.EOF,=,False)
+			F.Intrinsic.Control.DoUntil(V.ODBC.con!rstXRef.EOF,=,True)
+				'write the XRef stuff to screen
+				F.Intrinsic.Control.If(V.ODBC.con!rstXRef.FieldValIsNull!Model_Id,=,False)
+					'F.Intrinsic.Control.ElseIf(V.ODBC.con!rstXRef.FieldValTrim!Model_ID,=,"")
+					F.Intrinsic.Control.If(V.ODBC.con!rstXRef.FieldValTrim!Model_ID,=,"")
+						F.Intrinsic.Debug.SetLA("No Model ID was found for part '",V.Local.sPart)
+						F.Intrinsic.UI.Msgbox(V.Ambient.LastAction,"")
+						V.Local.bAdd.Set(True)
+					F.Intrinsic.Control.Else
+						Gui.F_Batch.txtMod.Text(V.ODBC.con!rstXRef.FieldVal!Model_ID)
+					F.Intrinsic.Control.EndIf
+				F.Intrinsic.Control.Else
+					F.Intrinsic.Debug.SetLA("No Model ID was found for part '",V.Local.sPart)
+					F.Intrinsic.UI.Msgbox(V.Ambient.LastAction,"")
+					V.Local.bAdd.Set(True)
+				F.Intrinsic.Control.EndIf
+				Gui.F_Batch.txtModQty.Text(V.ODBC.con!rstXRef.FieldVal!Model_Quantity)
+				Gui.F_Batch.txtMtl.Text(V.ODBC.con!rstXRef.FieldVal!Material)
+				F.Intrinsic.String.Concat("Select Code_Sort,Qty_Order from Inventory_MSTR where Part='",V.Local.sPart,"'",V.Local.sSQL)
+				F.ODBC.Connection!con.OpenLocalRecordsetRO("rstInv",V.Local.sSQL)
+				F.Intrinsic.Control.If(V.ODBC.con!rstInv.EOF,=,False)
+					F.Intrinsic.Control.If(V.ODBC.con!rstInv.FieldVal!Code_Sort,=,"k")
+						V.Local.fQty.Set(V.ODBC.con!rstJob.FieldValFloat!Qty_Order)
+					F.Intrinsic.Control.ElseIf(V.ODBC.con!rstInv.FieldVal!Code_Sort,=,"K")
+						V.Local.fQty.Set(V.ODBC.con!rstJob.FieldValFloat!Qty_Order)
+					F.Intrinsic.Control.Else
+						V.Local.fQty.Set(V.ODBC.con!rstInv.FieldValFloat!Qty_Order)
+					F.Intrinsic.Control.EndIf
+				F.Intrinsic.Control.Else
+						V.Local.fQty.Set(V.ODBC.con!rstJob.FieldValFloat!Qty_Order)
+				F.Intrinsic.Control.EndIf
+
+				F.ODBC.con!rstInv.Close
+				'fill listview
+				'
+				F.Intrinsic.Debug.SetLA("Updating LVW for ",V.Global.sJob,"-",V.Global.sSuffix)
+				F.Intrinsic.Control.CallSub(Log,"sText",V.Ambient.LastAction,"bFirst",False)
+				'added code to check to make sure the ModCount is a whole number. Quote 3791 by ENM on 2/10/2013
+				F.Intrinsic.Control.If(V.Screen.F_Batch!txtModQty.Text,>,0)
+					F.Intrinsic.Math.Mod(V.Local.fQty,V.Screen.F_Batch!txtModQty.Text,V.Local.fMCt)
+					F.Intrinsic.Control.If(V.Local.fMCt,=,0)
+						F.Intrinsic.Math.Div(V.Local.fQty,V.Screen.F_Batch!txtModQty.Text,V.Local.fMCt)
+					F.Intrinsic.Control.Else
+						V.Local.bAdd.Set(True)
+					F.Intrinsic.Control.EndIf
+				F.Intrinsic.Control.Else
+					V.Local.fMCt.Set(0)
+				F.Intrinsic.Control.Endif
+				Gui.F_Batch.txtModQty.Text(V.Local.fMCt)
+				F.Intrinsic.String.Concat("B",V.Global.sJob,V.Global.sSuffix,V.Local.sKey)
+		'		Gui.F_Batch.lvwWOBatch.AddListItem(V.Local.sKey.String,V.Global.sJob)
+		'		Gui.F_Batch.lvwWOBatch.SetListItemSubItemText(V.Local.sKey.String,1,V.Global.sSuffix)
+		'		Gui.F_Batch.lvwWOBatch.SetListItemSubItemText(V.Local.sKey.String,2,V.Screen.F_Batch!txtPart.Text)
+		'		Gui.F_Batch.lvwWOBatch.SetListItemSubItemText(V.Local.sKey.String,3,V.Local.fQty)
+		'		Gui.F_Batch.lvwWOBatch.SetListItemSubItemText(V.Local.sKey.String,4,V.Screen.F_Batch!txtMod.Text)
+		'		Gui.F_Batch.lvwWOBatch.SetListItemSubItemText(V.Local.sKey.String,5,V.Screen.F_Batch!txtMtl.Text)
+				F.Intrinsic.Control.If(V.Local.bAdd,=,False)
+					F.Intrinsic.Math.Add(V.Global.iKey,1,V.Global.iKey)
+					Gui.F_Batch.lvwWOBatch.AddListItem(V.Global.iKey,V.Global.sJob)
+					Gui.F_Batch.lvwWOBatch.SetListItemSubItemText(V.Global.iKey,1,V.Global.sSuffix)
+					Gui.F_Batch.lvwWOBatch.SetListItemSubItemText(V.Global.iKey,2,V.Screen.F_Batch!txtPart.Text)
+					Gui.F_Batch.lvwWOBatch.SetListItemSubItemText(V.Global.iKey,3,V.Local.fQty)
+					Gui.F_Batch.lvwWOBatch.SetListItemSubItemText(V.Global.iKey,4,V.Screen.F_Batch!txtMod.Text)
+					Gui.F_Batch.lvwWOBatch.SetListItemSubItemText(V.Global.iKey,5,V.Screen.F_Batch!txtMtl.Text)
+					Gui.F_Batch.lvwWOBatch.SetListItemSubItemText(V.Global.iKey,6,V.Screen.F_Batch!txtModQty.Text)
+				F.Intrinsic.Control.EndIf
+				V.Local.bAdd.Set(False)
+				F.ODBC.con!rstXRef.MoveNext
+			F.Intrinsic.Control.Loop
+			F.ODBC.con!rstXRef.Close
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+	F.ODBC.con!rstJob.Close
+	'F.ODBC.con!rstXRef.Close
+	Gui.F_Batch..Enabled(true)
+	
+	F.Intrinsic.Control.CallSub(Clear)
+'F.Intrinsic.Control.EndIf
+'Error Handling
+F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.Label("Add2ListError")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	F.Intrinsic.Debug.SetLA("Error Occurred in AddToList Error Number ",V.Ambient.ErrorNumber," with the following description ",V.Ambient.ErrorDescription)
+	F.Intrinsic.UI.Msgbox(V.Ambient.LastAction)
+	Gui.F_Batch..Enabled(True)
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+
+Program.Sub.AddToList.End
+
+Program.Sub.Clear.Start
+
+Gui.F_Batch.txtMod.Text("")
+Gui.F_Batch.txtMtl.Text("")
+Gui.F_Batch.txtPart.Text("")
+Gui.F_Batch.txtSuf.Text("")
+Gui.F_Batch.txtWO.Text("")
+Gui.F_Batch.txtScan.Text("")
+Gui.F_Batch.txtScan.SetFocus
+
+Program.Sub.Clear.End
+
+Program.Sub.Scan.Start
+V.Local.sRt.Declare(String)
+V.Local.iRet.Declare(Long)
+
+F.Intrinsic.Control.If(V.Screen.F_Batch!txtScan.Text,<>,"")
+	'
+	V.Global.sScan.Set(V.Screen.F_Batch!txtScan.Text)
+	F.Intrinsic.Control.If(V.Global.sLastScan,=,V.Global.sScan)
+	F.Intrinsic.Control.AndIf(V.Global.sLastScan,<>,"")
+		F.Intrinsic.Debug.SetLA(V.Global.sScan," has already been scanned previously")
+		F.Intrinsic.UI.Msgbox(V.Ambient.LastAction)
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.Else
+		V.Global.sLastScan.Set(V.Global.sScan)
+		F.Intrinsic.Control.CallSub(Addtolist)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+
+
+Program.Sub.Scan.End
+
+program.sub.lvwwobatch_click.start
+'TODO: Need to move selected info to the top of the screen to delete
+V.Local.sWOSuf.Declare(String)
+V.Local.iOrd.Declare(Long)
+'F.Intrinsic.Debug.InvokeDebugger
+
+Gui.F_Batch.lvwWOBatch.ListItemKeyToOrdinal(V.Screen.F_Batch!lvwWOBatch.SelectedItemKey,V.Local.iOrd)
+F.Intrinsic.String.Split(V.Screen.F_Batch!lvwWOBatch.ListItemTextExtended(v.Local.iOrd),"*!*",V.Local.sWOSuf)
+'V.Local.sWOSuf.Set(V.Screen.F_Batch!lvwWOBatch.SelectedItemKey)
+'Gui.F_Batch.txtWO.Text(V.Screen.F_Batch!lvwWOBatch.SelectedItemKey)
+Gui.F_Batch.txtWO.Text(V.Local.sWOSuf(0))
+F.Intrinsic.Control.If(V.Local.sWOSuf.UBound,>,0)
+	Gui.F_Batch.txtSuf.Text(V.Local.sWOSuf(1))
+F.Intrinsic.Control.EndIf
+
+program.sub.lvwwobatch_click.end
+
+program.sub.cmddel_click.start
+F.Intrinsic.Control.CallSub(Removewo)
+
+program.sub.cmddel_click.end
+
+program.sub.cmdclear_click.start
+
+
+program.sub.cmdclear_click.end
+
+program.sub.cmdclearwos_click.start
+Gui.F_Batch.lvwWOBatch.ClearItems
+
+program.sub.cmdclearwos_click.end
+
+
